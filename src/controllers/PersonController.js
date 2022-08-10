@@ -7,7 +7,7 @@ class PersonController {
     }
 
     async getByName(req, res) {
-        const payload = await PersonService.getPersonByName();
+        const payload = await PersonService.getPersonByName(req.params.name);
         res.status(200).send(payload);
     }
 }
