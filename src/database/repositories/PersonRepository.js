@@ -11,7 +11,7 @@ class PersonRepository {
 
     async findPersonByName (name) {
         const conn = await db.connectToMySql();
-        const query = "";
+        const query = "SELECT * FROM person WHERE fullName LIKE '%?%';";
         const people = await conn.query(query, [name]);
 
         return people;
