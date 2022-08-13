@@ -28,26 +28,14 @@ class PersonController {
     }
 
     async delete(req, res) {
-        const { fullName, city, state } = req.body;
+        const { id } = req.params;
 
-        if (!fullName) {
-            return res.status(400).json({ error: 'Fullname is required to delete a person.' });
+        const person = await PersonService.getPersonById(id);
+
+        if (!person) {
+            res.status(404).json({ error: 'Person not found.' });
         }
-
-        if (!city) {
-            return res.status(400).json({ error: 'City is required to delete a person.' });
-        }
-
-        if (!state) {
-            return res.status(400).json({ error: 'State is required to delete a person.' });
-        }
-        const personId = await PersonService.getPersonByInfo({ fullName, city, state })
-
-        if(!personId) {
-            return res.status(400).json({ error: 'ID não encontrado.' });
-        }
-
-        const payload = await PersonService.deletePerson(personId);
+        const payload = await PersonService.deletePerson(id);
 
         res.json(payload);
     }

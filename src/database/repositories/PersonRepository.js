@@ -28,12 +28,12 @@ class PersonRepository {
     }
 
     // This function is only used to find a person more accurately and delete it in the deletePerson function.
-    async findPersonByInfo({ fullName, city, state }) {
+    async findPersonById(id) {
         const conn = await db.connectToMySql();
-        const query = `SELECT id FROM person WHERE fullName = ? AND city = ? AND state = ?;`;
-        const [[person]] = await conn.query(query, [fullName, city, state]);
+        const query = `SELECT * FROM person WHERE id = ?;`;
+        const [[person]] = await conn.query(query, [id]);
 
-        return person.id;
+        return person;
     }
 
     async deletePerson(id) {

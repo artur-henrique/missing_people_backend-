@@ -9,8 +9,8 @@ class PersonService {
         return PersonRepository.findPersonByName(name);
     }
 
-    async getPersonByInfo({ fullName, city, state }) {
-        return PersonRepository.findPersonByInfo({ fullName, city, state });
+    async getPersonById(id) {
+        return PersonRepository.findPersonById(id);
     }
 
     async createPerson ({fullName, dob, dom, city, state}) {
