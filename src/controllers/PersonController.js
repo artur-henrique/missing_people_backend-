@@ -13,7 +13,7 @@ class PersonController {
 
     async store(req, res) {
         const { fullName, dob, dom, city, state } = req.body;
-
+        
         if (!fullName) {
             return res.status(400).json({ error: 'Fullname is required.' });
         }
